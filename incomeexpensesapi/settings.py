@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',  # required for serving swagger ui's css/js files
     'drf_yasg',
+    'rest_framework_simplejwt.token_blacklist',
     "corsheaders",
     'rest_framework',
     'rest_framework_simplejwt',
@@ -106,6 +107,7 @@ REST_FRAMEWORK={
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 5,
     'NON_FIELD_ERRORS_KEY': 'error',
+    'EXCEPTION_HANDLER' : 'utils.exceptionhandler.custom_exception_handler',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
@@ -164,13 +166,11 @@ import environ
 # Initialise environment variables
 env = environ.Env()
 environ.Env.read_env()
-
-EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS=True
-EMAIL_HOST='smtp.zoho.com'
-EMAIL_PORT=587
-EMAIL_HOST_USER= env('EMAIL_HOST_USER')  #'nimashadman@zohomail.com'
-DEFAULT_FROM_EMAIL= env('EMAIL_HOST_USER')  #'nimashadman@zohomail.com'
-EMAIL_HOST_PASSWORD= env('EMAIL_HOST_PASSWORD')  #'Nima6190'            
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.zoho.eu'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = env('EMAIL_HOST_USER')    
 
 

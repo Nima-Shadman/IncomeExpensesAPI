@@ -1,5 +1,3 @@
-from lib2to3.pgen2 import token
-from os import access
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager,PermissionsMixin
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -33,7 +31,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_add = models.DateTimeField(auto_now=True)
-    #is_superuser = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
